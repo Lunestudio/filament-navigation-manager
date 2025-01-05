@@ -1,0 +1,27 @@
+preset: package
+
+namespace: Lunestudio\FilamentNavigationManager
+user-auth-model: App\Models\User
+
+paths:
+  src: src
+  resource: resources
+
+factory:
+  path: database/factories
+
+migration:
+  path: database/migrations
+  prefix: ''
+
+console:
+  namespace: Lunestudio\FilamentNavigationManager\Console
+
+model:
+  namespace: Lunestudio\FilamentNavigationManager\Models
+
+provider:
+  namespace: Lunestudio\FilamentNavigationManager\Providers
+
+testing:
+  namespace: Lunestudio\FilamentNavigationManager\Tests
