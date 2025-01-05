@@ -65,7 +65,7 @@ You can define the following properties: `Name`, `Location`, `Append profile ite
 
 <p align="center"><img src="/art/edit-page.png" alt="Edit Menu"></p>
 
-You can also add menu items and define: `Parent Item`, `Linkeable Type`, `Linkeable Id`, `Custom Link`, `Ícon`, `Name`, `Extra Classes` and `Link Target`.
+You can also add menu items and define: `Parent Item`, `Linkable Type`, `Linkable Id`, `Custom Link`, `Ícon`, `Name`, `Extra Classes` and `Link Target`.
 
 <p align="center"><img src="/art/add-item.png" alt="Add Item"></p>
 
