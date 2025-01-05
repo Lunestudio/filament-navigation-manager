@@ -6,7 +6,7 @@ class ModelsHelper
 {
     public static function getAllModels(): array
     {
-        return config('filament-navigation-manager.linkeables', []);
+        return config('filament-navigation-manager.linkable', []);
     }
 
     public static function getLinkableOptions(): array

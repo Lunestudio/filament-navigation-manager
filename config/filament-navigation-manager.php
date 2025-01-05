@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'linkeables' => [
+    'linkable' => [
         // namespace => label,
         // \App\Models\Page::class => class_basename(\App\Models\Page::class),
         // \App\Models\Page::class => __('Page'),
