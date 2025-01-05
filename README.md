@@ -3,35 +3,35 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/lunestudio/filament-navigation-manager.svg?style=flat-square)](https://packagist.org/packages/lunestudio/filament-navigation-manager)
 [![Total Downloads](https://img.shields.io/packagist/dt/lunestudio/filament-navigation-manager.svg?style=flat-square)](https://packagist.org/packages/lunestudio/filament-navigation-manager)
 
-A menu manager plugin for Filament.
+A menu management plugin for Filament.
 
 <!-- docs_start -->
 
 ## Installation
 
-You can install the package via composer then run the installation command:
+You can install the package via composer:
 
 ```bash
 composer require lunestudio/filament-navigation-manager
 ```
 
-Publish migrations and assets:
+Then run the installation command to publish migrations and assets:
 
 ```bash
 php artisan filament-navigation-manager:install
 ```
 
-You can publish the config file with:
+To publish the config file, run:
 
 ```bash
 php artisan vendor:publish --tag="filament-navigation-manager-config"
 ```
 
-This is the contents of the published config file:
+Here is the content of the published config file:
 
 ```php
 return [
-    'linkeables' => [
+    'linkable' => [
         // namespace => label,
         // \App\Models\Page::class => class_basename(\App\Models\Page::class),
         // \App\Models\Page::class => __('Page'),
@@ -53,33 +53,32 @@ return [
 ];
 ```
 
-These configuration values define the defaults for all usage of the field and column. They
-can be overridden on a per field or column basis.
+These configuration values define the defaults for all usage of the field and column. They can be overridden on a per field or column basis.
 
 ## Menu Resource
 
-This is the index page to create navigations.
+This is the index page for creating menus.
 
 <p align="center"><img src="/art/resource.png" alt="Menu Resource"></p>
 
-You can define `Name`, `Location`, `Append profile item` and `Keep on mobile` props.
+You can define the following properties: `Name`, `Location`, `Append profile item` and `Keep on mobile`.
 
 <p align="center"><img src="/art/edit-page.png" alt="Edit Menu"></p>
 
-Also you can add menu items and define `Parent Item`, `Linkeable Type`, `Linkeable Id`, `Custom Link`, `Ícon`, `Name`, `Extra Classes` and `Link Target`.
+You can also add menu items and define: `Parent Item`, `Linkeable Type`, `Linkeable Id`, `Custom Link`, `Ícon`, `Name`, `Extra Classes` and `Link Target`.
 
 <p align="center"><img src="/art/add-item.png" alt="Add Item"></p>
 
-After you can reorder items draging and droping.
+Afterward, you can reorder items by dragging and dropping them.
 
 <p align="center"><img src="/art/reorder.png" alt="Reorder Items"></p>
 
 ## Menu Blade Component
 
-To make it as easy as possible to output your menu, Lunestudio comes with an
+To make it as easy as possible to output your menu, Lunestudio provides an
 `<x-navigation-manager::menu>` blade component.
 
-Default location is `main`, but you can change for your registered menus.
+The default location is `main`, but you can change it to any registered menu location.
 
 ```html
 <x-navigation-manager::menu />
