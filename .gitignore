@@ -82,6 +82,7 @@ composer.phar
 ### Laravel ###
 build
 composer.lock
+package-lock.json
 tests/temp
 .idea
 .phpunit.cache
