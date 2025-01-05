@@ -1,5 +1,3 @@
-@use('App\Models\TrainingCategory')
-
 <li
     @if ($item->attributes) {{ $attributes->class(['group'])->merge($item->attributes) }} @else {{ $attributes->class(['group']) }} @endif>
     <a @if ($item->attributes) {{ $attributes->merge($item->attributes) }} @endif href="{{ $item->url }}">

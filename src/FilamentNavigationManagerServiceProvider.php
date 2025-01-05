@@ -2,8 +2,11 @@
 
 namespace Lunestudio\FilamentNavigationManager;
 
+use Illuminate\Console\Command;
+use Filament\Support\Assets\Css;
 use Illuminate\Support\Facades\Blade;
 use Spatie\LaravelPackageTools\Package;
+use Filament\Support\Facades\FilamentAsset;
 use Lunestudio\FilamentNavigationManager\Models\Menu;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
@@ -23,7 +26,10 @@ class FilamentNavigationManagerServiceProvider extends PackageServiceProvider
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publishMigrations()
-                    ->askToRunMigrations();
+                    ->askToRunMigrations()
+                    ->endWith(function (Command $artisan) {
+                        $artisan->call('filament:assets');
+                    });
             });
     }
 
@@ -33,5 +39,9 @@ class FilamentNavigationManagerServiceProvider extends PackageServiceProvider
         app()->bind(MenuResource::class, config('filament-navigation-manager.resources.resource'));
 
         Blade::componentNamespace('Lunestudio\\FilamentNavigationManager\\View\\Components', 'navigation-manager');
+
+        FilamentAsset::register([
+            Css::make('styles', __DIR__ . '/../dist/css/styles.css'),
+        ], 'lunestudio/filament-navigation-manager');
     }
 }

@@ -1,0 +1,66 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .menu-container {
+        @apply flex items-center justify-end py-2;
+    }
+
+    .menu-toggle {
+        @apply cursor-pointer p-2 lg:hidden;
+    }
+
+    .menu-toggle-close {
+        @apply cursor-pointer p-2 absolute top-4 right-4 lg:hidden;
+    }
+
+    .menu-toggle-input {
+        @apply hidden;
+    }
+
+    .menu {
+        &.not-keep-on-mobile {
+            @apply hidden lg:block;
+        }
+
+        &.menu-main {
+            &.keep-on-mobile {
+                @apply peer-checked:right-0;
+                @apply fixed flex flex-col items-center justify-center top-0 -right-full z-50 w-full h-full overflow-y-auto bg-gray-800 transition-all;
+                @apply lg:relative lg:block lg:top-auto lg:right-auto lg:overflow-visible lg:w-auto lg:h-auto lg:bg-transparent lg:transition-none;
+            }
+
+            ul {
+                @apply flex flex-col items-center gap-4;
+                @apply lg:flex-row;
+
+                & > li {
+                    @apply relative cursor-pointer;
+
+                    &:has(ul) {
+                        a:not(.profile-item) {
+                            @apply justify-center;
+                            @apply lg:justify-normal;
+                        }
+                    }
+
+                    a:not(.profile-item) {
+                        @apply flex items-center gap-2 py-1 px-2 bg-gray-500 hover:bg-red-500 transition-colors rounded-md;
+                    }
+
+                    ul {
+                        @apply pt-4 lg:pt-2 transition-all;
+                        @apply lg:absolute lg:max-h-0 lg:overflow-hidden lg:flex-col lg:items-stretch lg:gap-2;
+
+                        li {
+                            a:not(.profile-item) {
+                                @apply bg-red-500 hover:bg-gray-500;
+                                @apply lg:bg-gray-500 lg:hover:bg-red-500;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
