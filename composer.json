@@ -1,0 +1,62 @@
+{
+    "name": "lunestudio/filament-navigation-manager",
+    "type": "laravel-package",
+    "description": "A Filament to manage the navigation of your Laravel application.",
+    "keywords": [
+        "laravel",
+        "package",
+        "filament",
+        "navigation",
+        "manager"
+    ],
+    "license": "MIT",
+    "version": "0.1.0",
+    "authors": [
+        {
+            "name": "Lunestudio",
+            "email": "info@lunestudio.com.ar"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "guava/filament-icon-picker": "^2.2",
+        "spatie/eloquent-sortable": "^4.4",
+        "spatie/laravel-package-tools": "^1.18"
+    },
+    "require-dev": {
+        "filament/filament": "^3.2",
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.19",
+        "orchestra/canvas": "^9.2",
+        "orchestra/testbench": "^9.9",
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lunestudio\\FilamentNavigationManager\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lunestudio\\FilamentNavigationManager\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "canvas": "./vendor/bin/canvas @additional_args",
+        "analyse": "./vendor/bin/phpstan analyse --verbose --ansi --memory-limit=2G",
+        "format": "./vendor/bin/pint",
+        "test": "./vendor/bin/phpunit --testdox"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lunestudio\\FilamentNavigationManager\\FilamentNavigationManagerServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
