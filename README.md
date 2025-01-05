@@ -47,13 +47,6 @@ Here is the content of the published config file:
 
 ```php
 return [
-    'linkable' => [
-        // namespace => label,
-        // \App\Models\Page::class => class_basename(\App\Models\Page::class),
-        // \App\Models\Page::class => __('Page'),
-        \App\Models\User::class => class_basename(\App\Models\User::class),
-    ],
-
     'model' => \Lunestudio\FilamentNavigationManager\Models\Menu::class,
 
     'resources' => [
@@ -66,10 +59,53 @@ return [
         'navigation_count_badge' => false,
         'resource' => \Lunestudio\FilamentNavigationManager\Filament\Resources\MenuResource::class,
     ],
+
+    'linkable' => [
+        [
+            'model' => \App\Models\User::class,
+            'label' => __('Users'),
+            'model_prop_to_pluck' => 'name',
+            'item_prop_to_text' => 'name',
+            'route_name' => 'user',
+            'model_prop_to_route' => 'email',
+        ],
+        // [
+        //     'model' => $full_class_name,
+        //     'label' => $text_label_to_linkable_type_select,
+        //     'model_prop_to_pluck' => $fillable_name,
+        //     'item_prop_to_text' => $fillable_name,
+        //     'route_name' => $route_name,
+        //     'model_prop_to_route' => $fillable_name_and_route_attr,
+        // ],
+    ],
 ];
 ```
 
-These configuration values define the defaults for all usage of the field and column. They can be overridden on a per field or column basis.
+Linkable items must consider the properties of the models and the attributes of the routes.
+
+The properties `model_prop_to_pluck`, `item_prop_to_text`, and `model_prop_to_route` must be fillable.
+
+At the same time, the `model_prop_to_route` property must be defined with the same name as the model property, and the route must be named.
+
+An example for the linkable User is:
+
+```php
+Route::get('/users/{email}', function () {
+    return view('dashboard');
+})->name('user');
+```
+
+And in the model:
+
+```php
+class User extends Authenticatable
+{
+    protected $fillable = [
+        'name',
+        'email',
+    ];
+}
+```
 
 ## Menu Resource
 
