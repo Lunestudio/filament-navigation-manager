@@ -21,6 +21,22 @@ Then run the installation command to publish migrations and assets:
 php artisan filament-navigation-manager:install
 ```
 
+After that, you will need to add a plugin to your `AdminPanelProvider`
+
+```php
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->default()
+        ->id('admin')
+        ->path('admin')
+        ->plugins([
+            // ...$plugins,
+            FilamentNavigationManagerPlugin::make(),
+        ]);
+}
+```
+
 To publish the config file, run:
 
 ```bash
