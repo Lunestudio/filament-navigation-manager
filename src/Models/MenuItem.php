@@ -10,6 +10,7 @@ use Spatie\EloquentSortable\SortableTrait;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Lunestudio\FilamentNavigationManager\Helpers\ModelsHelper;
 
 class MenuItem extends Model implements Sortable
 {
@@ -59,19 +60,18 @@ class MenuItem extends Model implements Sortable
         }
 
         if (! empty($this->linkable_type) && ! empty($this->linkable_id) && class_exists($this->linkable_type)) {
+            $model_data = ModelsHelper::getModelData($this->linkable_type);
             $linkable = $this->linkable_type::find($this->linkable_id);
+            $route_name = Str::kebab(class_basename($this->linkable_type));
+            $prop_to_route = $linkable?->{$model_data['model_prop_to_route']};
 
-            if ($linkable?->slug) {
-                $route_name = Str::kebab(class_basename($this->linkable_type));
-
-                if (Route::has($route_name)) {
-                    $url = route($route_name, ['slug' => $linkable->slug], false);
-                }
+            if (Route::has($route_name) && $prop_to_route) {
+                $url = route($route_name, [$model_data['model_prop_to_route'] => $prop_to_route], false);
             }
         }
 
         return Attribute::make(
-            get: fn () => $url,
+            get: fn() => $url,
         );
     }
 
