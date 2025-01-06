@@ -44,12 +44,14 @@ class ItemsRelationManager extends RelationManager
                 Select::make('linkable_id')
                     ->options(function (Get $get) {
                         if (class_exists($get('linkable_type'))) {
-                            return $get('linkable_type')::all()->pluck('name', 'id');
+                            $model_data = ModelsHelper::getModelData($get('linkable_type'));
+                            return $model_data['model']::all()->pluck($model_data['model_prop_to_pluck'], 'id');
                         }
                     })
                     ->afterStateUpdated(function (Get $get, Set $set) {
-                        if ($get('linkable_type') && $get('linkable_type') !== 'custom' && $get('linkable_id') && class_exists($get('linkable_type'))) {
-                            $set('name', $get('linkable_type')::find($get('linkable_id'))->title ?? $get('linkable_type')::find($get('linkable_id'))->name);
+                        if ($get('linkable_type') && $get('linkable_type') !== 'custom' && $get('linkable_id')) {
+                            $model_data = ModelsHelper::getModelData($get('linkable_type'));
+                            $set('name', $model_data['model']::find($get('linkable_id'))?->{$model_data['item_prop_to_text']});
                         }
                     })
                     ->reactive()

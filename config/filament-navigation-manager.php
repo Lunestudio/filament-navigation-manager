@@ -1,13 +1,6 @@
 <?php
 
 return [
-    'linkable' => [
-        // namespace => label,
-        // \App\Models\Page::class => class_basename(\App\Models\Page::class),
-        // \App\Models\Page::class => __('Page'),
-        \App\Models\User::class => class_basename(\App\Models\User::class),
-    ],
-
     'model' => \Lunestudio\FilamentNavigationManager\Models\Menu::class,
 
     'resources' => [
@@ -19,5 +12,24 @@ return [
         'navigation_sort' => null,
         'navigation_count_badge' => false,
         'resource' => \Lunestudio\FilamentNavigationManager\Filament\Resources\MenuResource::class,
+    ],
+
+    'linkable' => [
+        [
+            'model' => \App\Models\User::class,
+            'label' => class_basename(\App\Models\User::class),
+            'model_prop_to_pluck' => 'name',
+            'item_prop_to_text' => 'name',
+            'route_name' => \Illuminate\Support\Str::kebab(class_basename(\App\Models\User::class)),
+            'model_prop_to_route' => 'email',
+        ],
+        // [
+        //     'model' => $full_class_name,
+        //     'label' => $text_label_to_linkable_type_select,
+        //     'model_prop_to_pluck' => $fillable_name,
+        //     'item_prop_to_text' => $fillable_name,
+        //     'route_name' => $route_name,
+        //     'model_prop_to_route' => $fillable_name_and_route_attr,
+        // ],
     ],
 ];
